@@ -12,6 +12,7 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 //{JSON.stringify(slots)}
 const Home=()=>{
 	const [value,setValue]=useState("")
+    const [posts,setPost]=useState([])
 		const handleChange=(e,editor)=>
 		{
 			//console.log(editor.getData())
@@ -26,9 +27,15 @@ const Home=()=>{
 		}
 
 		useEffect(() => {
-    // action on update of movies
-}, [value]);
-
+                 fetch('http://localhost:8000/api/showpost')
+        .then(response => response.json())
+          .then(data => 
+             {     
+                setPost(data)
+                 console.log("result"+data)
+            }
+            );
+             }, []);
 	return (
 		  <div className="container">
                 <h2>Using CKEditor 5 build in React</h2>
@@ -48,7 +55,15 @@ const Home=()=>{
                     } }
                 />
                 <button onClick={handleSubmit} className="btn btn-primary" style={{"float":"right"}} >Post</button>
-                { ReactHtmlParser(value) }
+               
+                <div className="posts">
+                {posts.map((home ,i)=> <div>
+                      <Link>
+                      <h6 title="click to read"> {i+1}.{home.postdata.slice(0,100)}</h6>
+                      <p>submitted by: {home.user}</p>
+                      </Link>
+                    </div>)}
+                </div>
             </div>
 		)
 
