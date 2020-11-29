@@ -5,6 +5,14 @@
 	background: #D3D3D3;
 	
 }
+#news
+{
+	border-bottom:2px solid #FF1493;
+}
+#news:hover
+{
+	text-decoration: none;
+}
 .posts h6
 {
 	color: black;

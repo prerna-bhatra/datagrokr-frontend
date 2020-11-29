@@ -8,11 +8,14 @@ import {BASE_URL} from "../config.js"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
+import stripHtml from "string-strip-html"
 //{JSON.stringify(slots)}
 const Home=()=>{
 	const [value,setValue]=useState("")
     const [posts,setPost]=useState([])
+    const {user}=isAuthenticated()
+    const userid=user._id
+    const username=user.name
 		const handleChange=(e,editor)=>
 		{
 			//console.log(editor.getData())
@@ -22,8 +25,24 @@ const Home=()=>{
 		}
 		const handleSubmit=()=>
 		{
+        
+        const PostData={userid,username,value}
+            fetch(`http://localhost:8000/api/createpost`,{//it is correct till here
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(PostData)
 
-			console.log("form data"+value);
+        })
+    .then(response=>{
+      window.alert("published")
+      window.location.reload(false);
+
+    })
+    .catch(err=>{
+        console.log(err)
+    })
 		}
 
 		useEffect(() => {
@@ -41,7 +60,7 @@ const Home=()=>{
                 <h2>Using CKEditor 5 build in React</h2>
                 <CKEditor
                     editor={ ClassicEditor }
-                    data="<p>Hello write your post here</p>"
+                    data="<p>Hello! write your post here</p>"
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
                         console.log( 'Editor is ready to use!', editor );
@@ -58,9 +77,12 @@ const Home=()=>{
                
                 <div className="posts">
                 {posts.map((home ,i)=> <div>
-                      <Link>
-                      <h6 title="click to read"> {i+1}.{home.postdata.slice(0,100)}</h6>
-                      <p>submitted by: {home.user}</p>
+                      <Link id="news" to={`showpost/${home._id}`} >
+                      <h6 title="click to read full post"> {i+1}.{stripHtml(home.value.slice(0,150)).result} </h6>
+                     <span>
+                      <p>submitted by: {home.username} |  Read  more</p>
+
+                    </span>
                       </Link>
                     </div>)}
                 </div>

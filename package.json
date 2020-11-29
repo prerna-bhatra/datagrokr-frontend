@@ -21,7 +21,8 @@
     "react-rte": "^0.16.3",
     "react-scripts": "3.4.3",
     "react-uuid": "^1.0.2",
-    "strftime": "^0.10.0"
+    "strftime": "^0.10.0",
+    "string-strip-html": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
