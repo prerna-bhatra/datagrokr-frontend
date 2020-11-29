@@ -19,9 +19,10 @@ const ShowPost=()=>{
 		const {postid}=useParams()
 		const {user}=isAuthenticated()
 		const userid=user._id
+		const nameuser=user.name
 		 const handleclick=()=>
 		 {
-		 	 const commentdata={userid,commentpost,postid}
+		 	 const commentdata={userid,commentpost,postid,nameuser}
 		 	 console.log(commentdata)
            	  fetch(`http://localhost:8000/api/createcomment/${userid}`,{//it is correct till here
             method:"POST",
@@ -73,18 +74,19 @@ const ShowPost=()=>{
 				<p>{post}</p>
 				<div className="row" id="comment-box">
 				<div className="col-md-11">
-				<input onChange={handleChange} type="text"  className="form-control" placeholder="comment"  required/>
+				<input onChange={handleChange} type="text"  className="form-control" placeholder="add a comment "  required/>
 				</div>
 				<div className="col-md-1">
 				<button onClick={handleclick} style={{"float":"right"}}  className="btn btn-primary">post</button>
 				</div>
 			</div>
-			<div className="comment-section">
+			<div >
 				<div>
 					{comment.map((home ,i)=> <div   className="comment-section-user">
-						<button  style={{"float":"right"}} id="ellipsis"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                     	<h6> {home._id} said</h6>
+						<button  style={{"float":"right"}} id="ellipsis"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                     	<h6> {home.nameuser} said</h6>
                      	<p>{home.commentpost}</p>
+                     	<input className="form-control" placeholder="add a reply " />
                      	</div>)}
 				</div>
 				</div>

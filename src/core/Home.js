@@ -56,9 +56,10 @@ const Home=()=>{
             );
              }, []);
 	return (
-		  <div className="container">
-                <h2>Using CKEditor 5 build in React</h2>
+		  <div className="container"  id="ckeditor">
+               
                 <CKEditor
+
                     editor={ ClassicEditor }
                     data="<p>Hello! write your post here</p>"
                     onReady={ editor => {

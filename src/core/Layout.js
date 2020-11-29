@@ -9,7 +9,7 @@ const Layout=({title='Title',description='', img=" " ,className,children})=>{
 	<div id="jumbotron"  >
 		<div className="row">
 		<div className="col-md-6">
-		<img style={{"width":"500px",height:"300px"}} src={require('./blog.jpeg')}></img>
+		<img id="comp"  src={require('./blog.jpeg')}></img>
 		</div>
 		<div className="col-md-6">
 		<p id="blog">
