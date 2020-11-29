@@ -57,3 +57,37 @@ padding: 20px 20px 20px 20px;
 {
 	margin-top: 4000px;
 }
+#comment-box
+{
+margin-bottom: 30px;
+}
+.comment-section
+{
+	border:1px solid black;
+	padding: 10px 10px 10px 10px ;
+	margin-bottom: 10px;
+}
+.comment-section-user
+{
+
+	border:1px solid black;
+	padding: 10px 10px 10px 10px ;
+	margin-bottom: 10px;
+}
+#ellipsis
+{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden
+}
+
+
+
+
+
+
+
+
+

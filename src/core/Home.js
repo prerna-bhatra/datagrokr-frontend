@@ -76,13 +76,12 @@ const Home=()=>{
                 <button onClick={handleSubmit} className="btn btn-primary" style={{"float":"right"}} >Post</button>
                
                 <div className="posts">
-                {posts.map((home ,i)=> <div>
+                {posts.map((home ,i)=> <div >
                       <Link id="news" to={`showpost/${home._id}`} >
-                      <h6 title="click to read full post"> {i+1}.{stripHtml(home.value.slice(0,150)).result} </h6>
-                     <span>
-                      <p>submitted by: {home.username} |  Read  more</p>
-
-                    </span>
+                      <h6 title="click to read full post"> {i+1}.{stripHtml(home.value.slice(0,170)).result} </h6>
+                      <div style={{"margin-bottom":"20px","border":"1px solid black"}}>
+                      <p style={{"float":"right"}}>submitted by: {home.username} |  Read  more</p>
+                      </div>
                       </Link>
                     </div>)}
                 </div>
