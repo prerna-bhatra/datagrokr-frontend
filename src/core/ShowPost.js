@@ -45,6 +45,61 @@ const ShowPost=()=>{
 		{
 			setCommentpost(e.target.value);
 		}
+
+		const deletecomment=(commentid)=>
+		{
+			console.log("commentid on click deletecomment"+commentid)
+			 fetch(`http://localhost:8000/api/deletecomment/${commentid}`)
+			        .then(response => response.json())
+			          .then(data => 
+			             {     
+			             	 window.alert("comment deleted")
+		      				window.location.reload(false);
+			            }
+			            );
+
+		}
+
+		const editcomment=(commentid,commentvalue)=>
+		{
+			console.log("commentid on click editcomment"+commentid)
+			const UpdatedComment=window.prompt("update",commentvalue)
+			console.log(UpdatedComment)
+			  fetch(`http://localhost:8000/api/updatecomment/${commentid}`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify({commentpost:UpdatedComment})
+
+			   })
+		    .then(response=>{
+
+
+		    })
+		    .catch(err=>{
+		        console.log(err)
+		    })
+		    window.alert("comment updated")
+		      window.location.reload(false);
+
+		}
+
+		const showDeleteButton=(commentid)=>
+		{
+			console.log("commentid"+commentid)
+			return <button  onClick={() => deletecomment(commentid)}  style={{"float":"right"}}  id="ellipsis"><i class="fa fa-trash" aria-hidden="true"></i></button>	
+				
+		}
+
+
+		const showEditButton=(commentid,commentvalue)=>
+		{
+			return <button  onClick={() => editcomment(commentid,commentvalue)}    style={{"float":"right"}}  id="ellipsis"><i class="fa fa-pencil" aria-hidden="true"></i></button>	
+			
+		}
+		
+
 			useEffect(() => {
                  fetch(`http://localhost:8000/api/showpostbyid/${postid}`)
 			        .then(response => response.json())
@@ -70,8 +125,10 @@ const ShowPost=()=>{
 	return (
 		<Layout>
 			<div className="container">
-				Submitted By-: {username}
-				<p>{post}</p>
+				<center><h6>Submitted By-: {username}</h6></center>
+				<br/>
+				
+				<p className="postdata">{post}</p>
 				<div className="row" id="comment-box">
 				<div className="col-md-11">
 				<input onChange={handleChange} type="text"  className="form-control" placeholder="add a comment "  required/>
@@ -83,7 +140,8 @@ const ShowPost=()=>{
 			<div >
 				<div>
 					{comment.map((home ,i)=> <div   className="comment-section-user">
-						<button  style={{"float":"right"}} id="ellipsis"><i class="fa fa-trash" aria-hidden="true"></i></button>
+						{home.nameuser===nameuser ? showDeleteButton(home._id) : ''}
+						{home.nameuser===nameuser ? showEditButton(home._id,home.commentpost) : ''}
                      	<h6> {home.nameuser} said</h6>
                      	<p>{home.commentpost}</p>
                      	<input className="form-control" placeholder="add a reply " />
