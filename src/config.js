@@ -1,1 +1,1 @@
-export const BASE_URL="http://localhost:8000/api"
+export const BASE_URL="https://sleepy-earth-06832.herokuapp.com/api"

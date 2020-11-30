@@ -10,6 +10,7 @@ import {
 import Layout from './Layout'
 import stripHtml from "string-strip-html"
 import {isAuthenticated} from '../auth'
+import {BASE_URL} from "../config.js"
 
 const ShowPost=()=>{
 		const [username,setUsername]=useState("")
@@ -24,7 +25,7 @@ const ShowPost=()=>{
 		 {
 		 	 const commentdata={userid,commentpost,postid,nameuser}
 		 	 console.log(commentdata)
-           	  fetch(`http://localhost:8000/api/createcomment/${userid}`,{//it is correct till here
+           	  fetch(`${BASE_URL}/createcomment/${userid}`,{//it is correct till here
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -49,7 +50,7 @@ const ShowPost=()=>{
 		const deletecomment=(commentid)=>
 		{
 			console.log("commentid on click deletecomment"+commentid)
-			 fetch(`http://localhost:8000/api/deletecomment/${commentid}`)
+			 fetch(`${BASE_URL}/deletecomment/${commentid}`)
 			        .then(response => response.json())
 			          .then(data => 
 			             {     
@@ -65,7 +66,7 @@ const ShowPost=()=>{
 			console.log("commentid on click editcomment"+commentid)
 			const UpdatedComment=window.prompt("update",commentvalue)
 			console.log(UpdatedComment)
-			  fetch(`http://localhost:8000/api/updatecomment/${commentid}`,{
+			  fetch(`${BASE_URL}/updatecomment/${commentid}`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -101,7 +102,7 @@ const ShowPost=()=>{
 		
 
 			useEffect(() => {
-                 fetch(`http://localhost:8000/api/showpostbyid/${postid}`)
+                 fetch(`${BASE_URL}/showpostbyid/${postid}`)
 			        .then(response => response.json())
 			          .then(data => 
 			             {     
@@ -110,7 +111,7 @@ const ShowPost=()=>{
 			                 console.log("result"+data)
 			            }
 			            );
-		  fetch(`http://localhost:8000/api/showcomment/${postid}`)
+		  fetch(`${BASE_URL}/showcomment/${postid}`)
         .then(response => response.json())
           .then(data => 
              {     

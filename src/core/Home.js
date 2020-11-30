@@ -27,7 +27,7 @@ const Home=()=>{
 		{
         
         const PostData={userid,username,value}
-            fetch(`http://localhost:8000/api/createpost`,{//it is correct till here
+            fetch(`${BASE_URL}/createpost`,{//it is correct till here
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -46,7 +46,7 @@ const Home=()=>{
 		}
 
 		useEffect(() => {
-                 fetch('http://localhost:8000/api/showpost')
+                 fetch(`${BASE_URL}/showpost`)
         .then(response => response.json())
           .then(data => 
              {     

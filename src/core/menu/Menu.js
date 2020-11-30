@@ -10,7 +10,7 @@ return (
 		<ul className="nav  " style={{background:"#333333",padding:"1px 1px 10px 10px" , position: "fixed",top:" 0", width: "100%","z-index":"1"}}>
 			<li className="nav-item">
 				<Link className="nav-link " style={{color:'white'}} id="nav-link"  to="/">
-					Home
+					Share News
 				</Link>
 			</li>
 			{isAuthenticated()  && isAuthenticated().user.role===0 && (
