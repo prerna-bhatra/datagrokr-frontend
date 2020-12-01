@@ -12,9 +12,9 @@
     "braintree-web-drop-in-react": "^1.2.1",
     "jodit-react": "^1.0.66",
     "moment": "^2.29.1",
-    "query-string": "^6.13.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "query-string": "^6.13.7",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-html-parser": "^2.0.2",
     "react-moment": "^1.0.0",
     "react-router-dom": "^5.2.0",
@@ -22,7 +22,7 @@
     "react-scripts": "3.4.3",
     "react-uuid": "^1.0.2",
     "strftime": "^0.10.0",
-    "string-strip-html": "^7.0.0"
+    "string-strip-html": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
