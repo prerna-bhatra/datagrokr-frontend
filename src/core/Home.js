@@ -25,9 +25,15 @@ const Home=()=>{
 		}
 		const handleSubmit=()=>
 		{
-        
-        const PostData={userid,username,value}
-            fetch(`${BASE_URL}/createpost`,{//it is correct till here
+        if(value==='')
+        {
+
+          window.alert("Blank post can not be added ")
+        }
+        else
+        {
+           const PostData={userid,username,value}
+            fetch(`${BASE_URL}/createpost`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
@@ -43,6 +49,8 @@ const Home=()=>{
     .catch(err=>{
         console.log(err)
     })
+        }
+       
 		}
 
 		useEffect(() => {

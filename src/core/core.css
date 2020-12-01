@@ -85,6 +85,12 @@ margin-bottom: 30px;
 {
   border-top:1px  solid gray;
 }
+.replySection
+{
+  padding: 20px 20px 50px 20px;
+  border:1px solid black;
+  margin-top:8px;
+}
 
 #comp
 {
